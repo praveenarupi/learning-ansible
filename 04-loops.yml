@@ -1,0 +1,27 @@
+- name: loop
+  hosts: all
+  tasks:
+    - name: Fruit Name
+      ansible.builtin.debug:
+        msg: Fruit Name = {{ item }}
+      loop:
+        - banana
+        - apples
+        - grapes
+
+    - name: Fruit Name with Quantity
+      ansible.builtin.debug:
+        msg: Fruit Name = {{ item.name }}, Quantity = {{ item.qty }}
+      loop:
+        - { name: banana, qty: 100 }
+        - { name: apples, qty: 200 }
+        - { name: grapes, qty: 500 }
+
+    - name: Place the result of the current item in the variable
+      ansible.builtin.shell: echo "{{ item }}"
+      loop:
+        - one
+        - two
+        - three
+      register: echo
+      when: item == "three"

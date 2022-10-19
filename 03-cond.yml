@@ -1,0 +1,19 @@
+- name: Demo On Conditions
+  hosts: all
+  vars:
+    redhat: true
+    debain: false
+  tasks:
+    - name: Run if it is Redhat family
+      ansible.builtin.debug:
+        msg: Hello Redhat
+      #when: ansible_os_family == "RedHat"
+      when: redhat or ansible_os_family == "RedHat"
+
+    - name: Run if it is debain family
+      ansible.builtin.debug:
+        msg: Hello Debain
+      #when: ansible_os_family == "Debain"
+      when: debain or ansible_os_family == "Debain"
+
+## Variables on the left should not be quoted.
