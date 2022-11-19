@@ -1,0 +1,8 @@
+- name: demo on nexus download
+  hosts: localhost
+  tasks:
+    - name: Download
+      unarchive:
+        src: "http://admin:admin123@http://3.237.96.134/:8081/repository/cart/cart-1.0.2.zip"
+        dest: /tmp
+        remote_src: yes
